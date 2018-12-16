@@ -1,9 +1,9 @@
 from django.db import models
 
 # Create your models here.
-# class Profile(models.Model):
-#     prof_pic = models.ImageField()
-#     Bio = models.TextField()
+class Profile(models.Model):
+    prof_pic = models.ImageField()
+    Bio = models.TextField()
 
 
 class Image(models.Model):

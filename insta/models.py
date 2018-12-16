@@ -12,4 +12,5 @@ class Image(models.Model):
     caption = models.TextField()
     likes = models.IntegerField()
     comments = models.TextField()
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 

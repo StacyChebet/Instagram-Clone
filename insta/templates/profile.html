@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap3%}
+{% load staticfiles %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        {% for image in images %}
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <img src="{{image.profile.prof_pic_url}}">
+            <img src="{{image.image.url}}" id="pic" class="img-responsive" alt="Image">
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

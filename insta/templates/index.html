@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+<div class="container">
+        {% for image in images %}
+        <!-- <div class="row" style="margin: 0 auto; display: flex; justify-content: center"> -->
+            <div class="col-xs-12 col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>{{image.poster}}</h3>
+                    </div>
+                    <!-- <div class="panel-body">
+                        <img src="{{image.image.url}}" id="pic" class="img-responsive" alt="Image" style="width: 100%">
+                        <p>{{image.caption}}</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        {% endfor%}
+</div>
+{% endblock %}

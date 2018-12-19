@@ -4,14 +4,19 @@ from .models import Image,Profile
 import datetime as dt
 from .forms import postImage
 from django.contrib.auth.decorators import login_required
-
+from .models import Image,Profile,User
 
 # Create your views here.
+@login_required(login_url='/accounts/login')
 def index(request):
-    return render(request, 'index.html')
+    images = Image.objects.all()
+    print(images)
+    return render(request, 'index.html', {"images":images})
+     
 
 def profile(request):
-    return render(request, 'profile.html')
+    images = Image.objects.filter(poster_id = request.user.id)
+    return render(request, 'profile.html', {"profile":profile, "images":images})
 
 @login_required(login_url = '/accounts/login/')
 def new_post(request):
@@ -27,3 +32,4 @@ def new_post(request):
     else:
         form = postImage()
     return render(request, 'new_post.html', {"form":form})
+

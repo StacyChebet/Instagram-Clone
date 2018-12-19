@@ -13,7 +13,16 @@ class Image(models.Model):
     image = models.ImageField(upload_to = 'photos/')
     name = models.CharField(max_length=40)
     caption = models.TextField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(null=True)
     comments = models.TextField()
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+
+    def save_image(self):
+        self.save()
+
+    @classmethod
+    def get_all_images(cls):
+        images = Image.objects.all()
+        return images
+
 

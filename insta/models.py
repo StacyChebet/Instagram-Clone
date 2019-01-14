@@ -7,6 +7,10 @@ class Profile(models.Model):
     prof_pic = models.ImageField()
     Bio = models.TextField()
 
+    @classmethod
+    def search_user(cls,name):
+        return User.objects.filter(username__icontains = name)
+
 
 class Image(models.Model):
     poster = models.ForeignKey(User, on_delete=models.CASCADE)

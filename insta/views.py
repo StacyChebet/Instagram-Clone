@@ -1,12 +1,16 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
-from .models import Image,Profile
 import datetime as dt
 from .forms import postImage
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,User
 
 # Create your views here.
+
+def login(request):
+    return render(request, 'registration/login.html')
+
+
 @login_required(login_url='/accounts/login')
 def index(request):
     images = Image.objects.all()
@@ -32,4 +36,18 @@ def new_post(request):
     else:
         form = postImage()
     return render(request, 'new_post.html', {"form":form})
+
+@login_required(login_url = '/accounts/login/')
+def search_results(request):
+    if 'user' in request.GET and request.GET["user"]:
+        search_term = request.GET.get("user")
+        searched_users = User.search_by_username(search_term)
+        message = f"{search_term}"
+        
+        return render(request, 'search_results.html', {"message": message, "users": searched_users})
+
+    else:
+        message = "You haven't searched for any user"
+        return render(request, 'search_results.html', {"message": message})
+
 

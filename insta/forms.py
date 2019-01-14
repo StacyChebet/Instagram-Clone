@@ -5,4 +5,4 @@ class postImage(forms.ModelForm):
     class Meta:
         model = Image
         exclude = ['poster','profile', 'comments', 'likes']
-        
+         
